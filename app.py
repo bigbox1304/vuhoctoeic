@@ -22,7 +22,7 @@ def load_words():
             pass  # Nếu file lỗi, tạo danh sách mới
     
     df = pd.read_excel(EXCEL_FILE).fillna("")
-    selected_words = df.sample(n=10).to_dict(orient="records")
+    selected_words = df.sample(n=15).to_dict(orient="records")
 
     with open(DATA_FILE, "w", encoding="utf-8") as f:
         json.dump({"date": datetime.today().strftime("%Y-%m-%d"), "words": selected_words}, f, ensure_ascii=False, indent=4)
