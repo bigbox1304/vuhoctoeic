@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Từ vựng hôm nay</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Arial', sans-serif;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background: #007bff;
+            color: white;
+            text-align: center;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        .btn-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px; /* Khoảng cách giữa các nút */
+            margin-top: 15px;
+        }
+        .btn-custom {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn-reset {
+            background: #28a745;
+            color: white;
+        }
+        .btn-reset:hover {
+            background: #218838;
+        }
+        .btn-quiz {
+            background: #ffc107;
+            color: white;
+        }
+        .btn-quiz:hover {
+            background: #e0a800;
+        }
+        .motivation {
+            font-size: 16px;
+            font-weight: 500;
+            color: #007bff;
+            margin-top: 20px; /* Đẩy lời chúc xuống dưới */
+            animation: fadeIn 0.8s ease-in-out;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center text-primary">📚 Từ vựng hôm nay</h1>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>English</th>
+                    <th colspan="2">Note / Nghĩa</th> <!-- Gộp 2 cột thành 1 tiêu đề -->
+                </tr>
+            </thead>
+            <tbody>
+                {% for word in words %}
+                <tr>
+                    <td><strong>{{ word['GOOD'] }}</strong></td>
+                    <td colspan="2">{{ word['LUCK'] }}  {{ word['TOEIC'] }}</td> 
+                    <!-- Hiển thị cả 2 dữ liệu trong cùng 1 ô -->
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="btn-container">
+            <form action="/reset" method="post">
+                <button type="submit" class="btn-custom btn-reset">🔄 Quá dễ, từ khác đi</button>
+            </form>
+            <a href="{{ url_for('quiz') }}" class="btn-custom btn-quiz">📝 Làm bài quiz</a>
+            
+        </div>
+        <div class="motivation">🌟 Hãy cố gằng nào!! 🌟</div>
+    </div>
+</body>
+</html>
